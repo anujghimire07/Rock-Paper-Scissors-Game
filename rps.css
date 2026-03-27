@@ -93,17 +93,17 @@ body {
 
 .scissors:hover {
   background-color: #692a03;
-  color: #d0c3b0;
+  color: #EFFFC8;
 }
 .rock:hover {
   background-color: #692a03;
-  color: #d0c3b0;
+  color: #EFFFC8;
 }
 .paper:hover {
   background-color: #692a03;
-  color: #d0c3b0;
+  color:#EFFFC8 ;
 }
 .reset:hover {
   background-color: #692a03;
-  color: #d0c3b0;
+  color: #EFFFC8;
 }
