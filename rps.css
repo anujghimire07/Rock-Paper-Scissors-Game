@@ -82,3 +82,28 @@ body {
   font-size: 30px;
   margin: 20px;
 }
+.rock,
+.paper,
+.scissors,
+.reset {
+  transition:
+    background-color 0.2s ease-in-out,
+    color 0.2s ease-in-out;
+}
+
+.scissors:hover {
+  background-color: #692a03;
+  color: #d0c3b0;
+}
+.rock:hover {
+  background-color: #692a03;
+  color: #d0c3b0;
+}
+.paper:hover {
+  background-color: #692a03;
+  color: #d0c3b0;
+}
+.reset:hover {
+  background-color: #692a03;
+  color: #d0c3b0;
+}
