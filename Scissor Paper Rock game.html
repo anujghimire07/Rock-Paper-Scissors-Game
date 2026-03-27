@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=DynaPuff:ital,wght@0,400;0,500;0,600;0,700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            background-color: #DBAD6A;
+            font-family: 'DynaPuff';
+            text-shadow: 2px 3px 1px black;
+            text-align: center;
+        }
+
+        .title {
+            color: aliceblue;
+            padding: 10px;
+            font-size: 50px;
+            margin: 20px;
+        }
+
+        .game {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .box {
+            height: 18vmin;
+            width: 18vmin;
+            border-radius: 0.5rem;
+            border: none;
+            box-shadow: 1px 2px 2px rgb(25, 24, 24);
+            background-color: #EFFFC8;
+            font-family: 'DynaPuff';
+            color: #5A352A;
+            font-size: large;
+        }
+
+        .paracontainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 5px;
+        }
+
+        .para1,
+        .para2 {
+            height: 10vmin;
+            font-family: 'DynaPuff';
+            color: white;
+            font-size: large;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .reset {
+            border-radius: 0.5rem;
+            border: none;
+            box-shadow: 1px 2px 2px rgb(25, 24, 24);
+            background-color: #EFFFC8;
+            font-family: 'DynaPuff';
+            color: #5A352A;
+            font-size: large;
+            height: 10vh;
+            width: 10vw;
+        }
+
+        .resetbox {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px;
+        }
+
+        .score {
+            display: flex;
+            justify-content: center;
+            gap: 7rem;
+            color: aliceblue;
+            padding: 10px;
+            font-size: 30px;
+            margin: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="title">ROCK PAPER SCISSORS</h1>
+    <div class="paracontainer">
+        <div class="para1"></div>
+        <div class="para2"></div>
+    </div>
+    <div class="conatiner">
+        <div class="game">
+            <button class="box rock">ROCK</button>
+            <button class="box paper">PAPER</button>
+            <button class="box scissors">SCISSORS</button>
+        </div>
+    </div>
+    <div class="score">
+        <div class="player"></div>
+        <div class="draw"></div>
+        <div class="computer"></div>
+    </div>
+    <div class="resetbox">
+        <button class="reset">RESET</button>
+    </div>
+</body>
+<script>
+    let boxes = document.querySelectorAll(".box")
+    let rock = document.querySelector(".rock")
+    let paper = document.querySelector(".paper")
+    let scissors = document.querySelector(".scissors")
+    let para1 = document.querySelector(".para1")
+    let para2 = document.querySelector(".para2")
+    let reset = document.querySelector(".reset")
+    let player = document.querySelector(".player")
+    let draw = document.querySelector(".draw")
+    let computer = document.querySelector(".computer")
+    let comp
+    let playerwin = 0
+    let compwin = 0
+    let drawwin = 0
+    player.innerText = `Player: ${playerwin}`
+    draw.innerText = `Draw: ${drawwin}`
+    computer.innerText = `Computer: ${compwin}`
+    function calc() {
+        comp = Math.floor(Math.random() * 3) + 1
+    }
+    //1: rock
+    //2: paper
+    //3: scissors
+    rock.addEventListener("click", () => {
+        calc()
+        if (comp === 1) {
+            para1.innerText = "computer chose rock"
+            para2.innerText = "DRAW!!"
+            drawwin++
+            draw.innerText = `Draw: ${drawwin}`
+        }
+        else if (comp === 2) {
+            para1.innerText = "computer chose paper"
+            para2.innerText = "YOU LOSE!"
+            compwin++
+            computer.innerText = `Computer: ${compwin}`
+        }
+        else if (comp === 3) {
+            para1.innerText = "computer chose scissors"
+            para2.innerText = "YOU WIN"
+            playerwin++
+            player.innerText = `Player: ${playerwin}`
+        }
+    })
+    paper.addEventListener("click", () => {
+        calc()
+        if (comp === 2) {
+            drawwin++
+            para1.innerText = "computer chose paper"
+            para2.innerText = "DRAW!!"
+            draw.innerText = `Draw: ${drawwin}`
+        }
+        else if (comp === 3) {
+            compwin++
+            para1.innerText = "computer chose scissors"
+            para2.innerText = "YOU LOSE!"
+            computer.innerText = `Computer: ${compwin}`
+        }
+        else if (comp === 1) {
+            playerwin++
+            para1.innerText = "computer chose rock"
+            para2.innerText = "YOU WIN!"
+            player.innerText = `Player: ${playerwin}`
+        }
+    })
+    scissors.addEventListener("click", () => {
+        calc()
+        if (comp === 3) {
+            drawwin++
+            para1.innerText = "computer chose scissors"
+            para2.innerText = "DRAW!!"
+            draw.innerText = `Draw: ${drawwin}`
+        }
+        else if (comp === 1) {
+            compwin++
+            para1.innerText = "computer chose rock"
+            para2.innerText = "YOU LOSE!"
+            computer.innerText = `Computer: ${compwin}`
+        }
+        else if (comp === 2) {
+            playerwin++
+            para1.innerText = "computer chose paper"
+            para2.innerText = "YOU WIN!"
+            player.innerText = `Player: ${playerwin}`
+        }
+    })
+
+    boxes.forEach(element => {
+        element.addEventListener("click", () => {
+            boxes.forEach(e => {
+                e.disabled = true
+            })
+        })
+    })
+
+    reset.addEventListener("click", () => {
+        para1.innerText = ""
+        para2.innerText = ""
+        enable()
+        calc()
+
+    })
+    function enable() {
+        boxes.forEach(element => {
+            element.disabled = false
+        });
+    }
+</script>
+
+</html>
