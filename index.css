@@ -1,109 +1,263 @@
 * {
-  padding: 0;
-  margin: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  background-color: #dbad6a;
-  font-family: "DynaPuff";
-  text-shadow: 2px 3px 1px black;
-  text-align: center;
+    min-height: 100vh;
+    font-family: "DynaPuff", system-ui;
+    background:
+        radial-gradient(circle at top left, #2d1457, transparent 30%),
+        radial-gradient(circle at bottom right, #001f4d, transparent 30%),
+        linear-gradient(135deg, #090909, #111827);
+    color: white;
+    overflow-x: hidden;
+    padding: 25px 18px;
 }
 
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: -1;
+}
+
+/* TITLE */
 .title {
-  color: aliceblue;
-  padding: 10px;
-  font-size: 50px;
-  margin: 20px;
+    text-align: center;
+    font-size: 3.2rem;
+    letter-spacing: 3px;
+    margin-bottom: 35px;
+    color: #ffffff;
+    text-shadow:
+        0 0 10px #8b5cf6,
+        0 0 20px #8b5cf6,
+        0 0 35px #6d28d9;
 }
 
-.game {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-}
-
-.box {
-  height: 18vmin;
-  width: 18vmin;
-  border-radius: 0.5rem;
-  border: none;
-  box-shadow: 1px 2px 2px rgb(25, 24, 24);
-  background-color: #efffc8;
-  font-family: "DynaPuff";
-  color: #5a352a;
-  font-size: large;
-}
-
+/* TOP TEXT BOXES */
 .paracontainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 5px;
+    width: 100%;
+    max-width: 850px;
+    margin: auto;
+    display: flex;
+    gap: 18px;
+    margin-bottom: 35px;
 }
 
 .para1,
 .para2 {
-  height: 10vmin;
-  font-family: "DynaPuff";
-  color: white;
-  font-size: large;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    flex: 1;
+    min-height: 75px;
+    border-radius: 22px;
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow:
+        0 0 18px rgba(139, 92, 246, 0.15),
+        inset 0 0 10px rgba(255,255,255,0.05);
+    padding: 18px;
 }
 
-.reset {
-  border-radius: 0.5rem;
-  border: none;
-  box-shadow: 1px 2px 2px rgb(25, 24, 24);
-  background-color: #efffc8;
-  font-family: "DynaPuff";
-  color: #5a352a;
-  font-size: large;
-  height: 10vh;
-  width: 10vw;
+/* GAME CONTAINER */
+.conatiner {
+    display: flex;
+    justify-content: center;
 }
 
-.resetbox {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px;
+.game {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    flex-wrap: wrap;
 }
 
+/* GAME BUTTONS */
+.box {
+    width: 190px;
+    height: 190px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    font-family: "DynaPuff", system-ui;
+    background: rgba(255,255,255,0.07);
+    backdrop-filter: blur(12px);
+    border: 2px solid rgba(255,255,255,0.08);
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.5),
+        inset 0 0 12px rgba(255,255,255,0.05);
+}
+
+/* SHINY HOVER EFFECT */
+.box::before {
+    content: "";
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255,255,255,0.15),
+        transparent
+    );
+    transform: rotate(45deg);
+    top: -150%;
+    left: -150%;
+    transition: 0.7s;
+}
+
+.box:hover::before {
+    top: 150%;
+    left: 150%;
+}
+
+.box:hover {
+    transform: translateY(-12px) scale(1.04);
+}
+
+/* ICONS */
+.box i {
+    font-size: 4.2rem;
+    transition: 0.3s ease;
+}
+
+.box span {
+    font-size: 1rem;
+    letter-spacing: 1.5px;
+}
+
+.box:hover i {
+    transform: scale(1.12) rotate(-6deg);
+}
+
+/* COLORS */
+.rock {
+    color: #ff4d6d;
+    box-shadow:
+        0 0 18px rgba(255,77,109,0.3),
+        0 10px 25px rgba(0,0,0,0.5);
+}
+
+.paper {
+    color: #38bdf8;
+    box-shadow:
+        0 0 18px rgba(56,189,248,0.3),
+        0 10px 25px rgba(0,0,0,0.5);
+}
+
+.scissors {
+    color: #c084fc;
+    box-shadow:
+        0 0 18px rgba(192,132,252,0.3),
+        0 10px 25px rgba(0,0,0,0.5);
+}
+
+/* SCOREBOARD */
 .score {
-  display: flex;
-  justify-content: center;
-  gap: 7rem;
-  color: aliceblue;
-  padding: 10px;
-  font-size: 30px;
-  margin: 20px;
-}
-.rock,
-.paper,
-.scissors,
-.reset {
-  transition:
-    background-color 0.2s ease-in-out,
-    color 0.2s ease-in-out;
+    width: 100%;
+    max-width: 850px;
+    margin: 45px auto 0;
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
 }
 
-.scissors:hover {
-  background-color: #692a03;
-  color: #EFFFC8;
+.player,
+.draw,
+.computer {
+    flex: 1;
+    min-width: 160px;
+    padding: 18px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 1.05rem;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
 }
-.rock:hover {
-  background-color: #692a03;
-  color: #EFFFC8;
+
+/* RESET BUTTON */
+.resetbox {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
 }
-.paper:hover {
-  background-color: #692a03;
-  color:#EFFFC8 ;
+
+.reset {
+    padding: 15px 45px;
+    border: none;
+    border-radius: 55px;
+    font-size: 0.95rem;
+    font-family: "DynaPuff", system-ui;
+    cursor: pointer;
+    color: white;
+    background: linear-gradient(135deg, #7c3aed, #2563eb);
+    transition: 0.3s ease;
+    box-shadow: 0 0 18px rgba(124,58,237,0.5);
 }
+
 .reset:hover {
-  background-color: #692a03;
-  color: #EFFFC8;
+    transform: scale(1.06);
+    box-shadow: 0 0 28px rgba(124,58,237,0.9);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+
+    .title {
+        font-size: 2.4rem;
+    }
+
+    .box {
+        width: 160px;
+        height: 160px;
+    }
+
+    .box i {
+        font-size: 3.5rem;
+    }
+
+    .paracontainer {
+        flex-direction: column;
+    }
+
+    .score {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .box {
+        width: 140px;
+        height: 140px;
+        border-radius: 25px;
+    }
+
+    .box i {
+        font-size: 3rem;
+    }
+
+    .reset {
+        width: 100%;
+    }
 }
